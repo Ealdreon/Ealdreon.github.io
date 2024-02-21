@@ -69,6 +69,12 @@
     </div>
 
     <script>
+        document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => {
+        card.classList.toggle('flipped');
+    });
+});
+
         // JavaScript für dynamische Interaktionen und Animationen hier
     </script>
 </body>
