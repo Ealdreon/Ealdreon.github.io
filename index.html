@@ -95,34 +95,12 @@
     </div>
 
    <script>
-    function showGame(gameId) {
-        // Alle Spiele-Container ausblenden
-        document.querySelectorAll('.container').forEach(container => {
-            container.classList.add('hidden');
-        });
-
-        // Gewähltes Spiel anzeigen
-        const gameContainer = document.getElementById(gameId);
-        gameContainer.classList.remove('hidden');
-    }
-
-    // Event-Delegation für Karten-Flip
-    document.addEventListener('click', function(e) {
-        // Überprüfen, ob das geklickte Element oder eines seiner Elternelemente die Klasse 'card' hat
-        let targetElement = e.target;
-        do {
-            if (targetElement.classList && targetElement.classList.contains('card')) {
-                // Flip-Logik
-                targetElement.querySelector('.card-inner').classList.toggle('flipped');
-                return; // Beendet die Schleife frühzeitig
-            }
-            // Geht zum nächsten Elternelement
-            targetElement = targetElement.parentNode;
-        } while (targetElement);
+    document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => {
+        card.classList.toggle('flipped');
     });
+});
 
-    // Initial bind für den Fall, dass die Seite direkt mit dem Kartenspiel geladen wird
-    // bindCardEvents(); Nicht mehr benötigt, da Event-Delegation verwendet wird
 </script>
 
 
