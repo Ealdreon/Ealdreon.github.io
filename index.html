@@ -95,21 +95,28 @@
     </div>
 
     <script>
-        function showGame(gameId) {
-            // Alle Spiele-Container ausblenden
-            document.querySelectorAll('.container').forEach(container => {
-                container.classList.add('hidden');
-            });
-            // Gewähltes Spiel anzeigen
-            document.getElementById(gameId).classList.remove('hidden');
-        }
-        
-        // Flip-Animation für Karten aktivieren
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('click', () => {
-                card.querySelector('.card-inner').classList.toggle('flipped');
-            });
+    function showGame(gameId) {
+        // Alle Spiele-Container ausblenden
+        document.querySelectorAll('.container').forEach(container => {
+            container.classList.add('hidden');
         });
-    </script>
+        // Gewähltes Spiel anzeigen
+        document.getElementById(gameId).classList.remove('hidden');
+        
+        // Flip-Animation Event-Bindings aktualisieren, wenn das Kartenspiel angezeigt wird
+        if (gameId === 'cardGame') {
+            document.querySelectorAll('.card').forEach(card => {
+                card.removeEventListener('click', flipCard); // Verhindert mehrfache Event-Bindings
+                card.addEventListener('click', flipCard);
+            });
+        }
+    }
+    
+    // Flip-Funktion für Wiederverwendbarkeit extrahiert
+    function flipCard() {
+        this.querySelector('.card-inner').classList.toggle('flipped');
+    }
+</script>
+
 </body>
 </html>
