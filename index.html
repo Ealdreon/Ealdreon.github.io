@@ -17,12 +17,9 @@
             text-align: center;
             padding: 20px;
         }
-        #home {
-            /* Styles für die Startseite */
-        }
         #cardGame .card {
             margin: 20px;
-            padding: 20px;
+            padding: 0; /* Geändert von 20px auf 0, um den inneren Container korrekt zu positionieren */
             background-color: #fff;
             border: 1px solid #ddd;
             border-radius: 8px;
@@ -94,15 +91,22 @@
         <button onclick="showGame('home')">Zurück zur Startseite</button>
     </div>
 
-   <script>
+    <script>
+    function showGame(gameId) {
+        document.querySelectorAll('.container').forEach(container => {
+            if (container.id === gameId) {
+                container.classList.remove('hidden');
+            } else {
+                container.classList.add('hidden');
+            }
+        });
+    }
+
     document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
-        card.classList.toggle('flipped');
+        card.addEventListener('click', () => {
+            card.classList.toggle('flipped');
+        });
     });
-});
-
-</script>
-
-
+    </script>
 </body>
 </html>
