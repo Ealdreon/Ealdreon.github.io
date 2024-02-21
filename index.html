@@ -89,33 +89,3 @@
     </script>
 </body>
 </html>
-
-    color: white;
-    transform: rotateY(180deg);
-}
-
-.card.flipped .card-inner {
-    transform: rotateY(180deg);
-}
-
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="card">Karte 1</div>
-        <div class="card">Karte 2</div>
-        <!-- Weitere Karten hier -->
-    </div>
-
-    <script>
-        document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
-        card.classList.toggle('flipped');
-    });
-});
-
-        // JavaScript für dynamische Interaktionen und Animationen hier
-    </script>
-</body>
-</html>
