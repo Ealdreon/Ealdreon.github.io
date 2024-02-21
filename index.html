@@ -100,22 +100,32 @@
         document.querySelectorAll('.container').forEach(container => {
             container.classList.add('hidden');
         });
+
         // Gewähltes Spiel anzeigen
-        document.getElementById(gameId).classList.remove('hidden');
-        
-        // Flip-Animation Event-Bindings aktualisieren, wenn das Kartenspiel angezeigt wird
+        const gameContainer = document.getElementById(gameId);
+        gameContainer.classList.remove('hidden');
+
+        // Event-Bindings nur aktualisieren, wenn das Kartenspiel angezeigt wird
         if (gameId === 'cardGame') {
-            document.querySelectorAll('.card').forEach(card => {
-                card.removeEventListener('click', flipCard); // Verhindert mehrfache Event-Bindings
-                card.addEventListener('click', flipCard);
-            });
+            // Kurze Verzögerung sicherstellen, dass die Elemente im DOM sind
+            setTimeout(() => {
+                bindCardEvents();
+            }, 0); // Eine Verzögerung von 0 ms reicht hier oft aus
         }
     }
     
-    // Flip-Funktion für Wiederverwendbarkeit extrahiert
-    function flipCard() {
-        this.querySelector('.card-inner').classList.toggle('flipped');
+    function bindCardEvents() {
+        document.querySelectorAll('#cardGame .card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.querySelector('.card-inner').classList.toggle('flipped');
+            });
+        });
     }
+
+    // Initial bind für den Fall, dass die Seite direkt mit dem Kartenspiel geladen wird
+    document.addEventListener('DOMContentLoaded', () => {
+        bindCardEvents();
+    });
 </script>
 
 </body>
