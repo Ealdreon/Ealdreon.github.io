@@ -3,22 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mein Kartenspiel</title>
+    <title>ColdCroc</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        body, h1, p, ul, li {
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .hidden {
+            display: none;
         }
         .container {
             text-align: center;
+            padding: 20px;
         }
-        .card {
+        #home {
+            /* Styles für die Startseite */
+        }
+        #cardGame .card {
             margin: 20px;
             padding: 20px;
             background-color: #fff;
@@ -56,7 +58,19 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="home">
+        <h1>Willkommen bei ColdCroc</h1>
+        <p>Entdecken Sie die Spiele, die wir entwickelt haben.</p>
+        <ul>
+            <li><button onclick="showGame('cardGame')">Kartenspiel</button></li>
+            <!-- Weitere Spiele als Menüpunkte -->
+        </ul>
+    </div>
+
+    <div class="container hidden" id="cardGame">
+        <h1>Kartenspiel</h1>
+        <p>Hier kommt die Beschreibung des Kartenspiels.</p>
+        <!-- Hier integrieren Sie die Karten-Flip-Animation -->
         <div class="card">
             <div class="card-inner">
                 <div class="card-front">
@@ -77,10 +91,20 @@
                 </div>
             </div>
         </div>
-        <!-- Weitere Karten hier -->
+        <button onclick="showGame('home')">Zurück zur Startseite</button>
     </div>
 
     <script>
+        function showGame(gameId) {
+            // Alle Spiele-Container ausblenden
+            document.querySelectorAll('.container').forEach(container => {
+                container.classList.add('hidden');
+            });
+            // Gewähltes Spiel anzeigen
+            document.getElementById(gameId).classList.remove('hidden');
+        }
+        
+        // Flip-Animation für Karten aktivieren
         document.querySelectorAll('.card').forEach(card => {
             card.addEventListener('click', () => {
                 card.querySelector('.card-inner').classList.toggle('flipped');
